@@ -3,10 +3,7 @@
     <string name="emailhint">Enter Email id</string>
     <string name="passhint">Enter Password</string>
     <string name="register"><u>Register</u></string>
-    <string name="title_activity_jobseek">jobseek</string>
 
-    <string name="navigation_drawer_open">Open navigation drawer</string>
-    <string name="navigation_drawer_close">Close navigation drawer</string>
 
     <string name="action_settings">Settings</string>
 </resources>
