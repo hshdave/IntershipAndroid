@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.patel.mayank.internship.JobDetailActivity"
+    android:weightSum="2">
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_distitle"
+            android:layout_gravity="center"
+            android:text="Job Title : "
+            android:textSize="25sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_title"
+            android:text="Job Title : "
+            android:textSize="25sp"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_disdec"
+            android:layout_gravity="center"
+            android:text="Job Description : "
+            android:textSize="25sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_desc"
+            android:text="Job Desc "
+            android:textSize="25sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_disloc"
+            android:layout_gravity="center"
+            android:text="Job Location : "
+            android:textSize="25sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_location"
+            android:text="Job Loc "
+            android:textSize="25sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_disrespon"
+            android:layout_gravity="center"
+            android:text="Job responsibilities : "
+            android:textSize="25sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_responsibilities"
+            android:text="Job respons"
+            android:textSize="25sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_disskills"
+            android:layout_gravity="center"
+            android:text="Job Skills : "
+            android:textSize="25sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_skills"
+            android:text="Job skill"
+            android:textSize="25sp"/>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_discarlvl"
+            android:layout_gravity="center"
+            android:text="Job Career Level : "
+            android:textSize="25sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_crlevel"
+            android:text="Job Career"
+            android:textSize="25sp"/>
+
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_discate"
+            android:layout_gravity="center"
+            android:text="Job Category : "
+            android:textSize="25sp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/jobd_category"
+            android:text="Job Category"
+            android:textSize="25sp"/>
+
+
+        <Button
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/applied_btn"
+            android:text="Apply Job"
+            android:layout_marginTop="20dp"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+
+</ScrollView>

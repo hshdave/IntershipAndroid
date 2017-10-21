@@ -1,9 +1,16 @@
 package com.patel.mayank.internship;
 
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.view.menu.ExpandedMenuView;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -20,28 +27,23 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 
-public class Jobseekeractivity extends AppCompatActivity {
+public class Jobseekeractivity extends Fragment {
 
     private FirebaseAuth raut;
     private FirebaseAuth.AuthStateListener mautListner;
 
-
     ArrayList<Jobs> arrayList;
-
-    TextView edt_test;
-        private String uid;
-
     ListAdapter lstadpt;
     ListView lstjob;
 
+    String uid = "";
+
+    public Jobseekeractivity() {
+    }
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_jobseekeractivity);
-
-
-        lstjob = (ListView) findViewById(R.id.lst_jobs);
 
         raut = FirebaseAuth.getInstance();
 
@@ -61,6 +63,19 @@ public class Jobseekeractivity extends AppCompatActivity {
         };
 
         getJobs();
+    }
+
+
+
+    @Nullable
+    @Override
+    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+
+        View view = inflater.inflate(R.layout.activity_jobseekeractivity,container,false);
+
+        lstjob = (ListView) view.findViewById(R.id.lst_jobs);
+
+        return view;
     }
 
     @Override
@@ -89,21 +104,38 @@ public class Jobseekeractivity extends AppCompatActivity {
 
                 for (DataSnapshot ds  : dataSnapshot.getChildren())
                 {
-                    String tit = ds.child("Title").getValue().toString();
-                    String loc = ds.child("Location").getValue().toString();
+                    String tit = ds.child("title").getValue().toString();
+                    String loc = ds.child("location").getValue().toString();
+                    String id = ds.getKey();
 
                     System.out.println("Jobs "+tit+" "+loc);
-                    arrayList.add(new Jobs(tit,loc));
+                    arrayList.add(new Jobs(id,tit,loc));
                 }
 
-                for (int i=0;i<arrayList.size();i++)
-                {
-                    System.out.println(arrayList.get(i).getTitle());
-                }
 
-              lstadpt = new ListAdapter(arrayList,Jobseekeractivity.this);
+              lstadpt = new ListAdapter(arrayList,getActivity());
                 lstjob.setAdapter(lstadpt);
 
+                lstjob.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                        //String key = ((TextView) view.findViewById(R.id.txt_name)).getText().toString();
+
+                        String key =arrayList.get(position).getId();
+
+                        JobDetailActivity jobDetailActivity = new JobDetailActivity();
+                        Bundle argument = new Bundle();
+                        argument.putString("keyId",key);
+                        jobDetailActivity.setArguments(argument);
+
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.add(R.id.jobseekcon,jobDetailActivity,"NewFragmentTag");
+                        ft.addToBackStack(null);
+                        ft.hide(Jobseekeractivity.this);
+                        ft.commit();
+                    }
+                });
 
             }
 
@@ -113,4 +145,6 @@ public class Jobseekeractivity extends AppCompatActivity {
             }
         });
     }
+
+
 }

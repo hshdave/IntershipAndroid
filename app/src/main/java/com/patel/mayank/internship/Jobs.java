@@ -5,9 +5,9 @@ package com.patel.mayank.internship;
  */
 
 public class Jobs {
-    private String title,location,career_level,desc,employer_id,responsbility,skill;
+    private String id,title,location,career_level,desc,employer_id,responsbility,skill,category;
 
-    public Jobs(String title, String location, String career_level, String desc, String employer_id, String responsbility, String skill) {
+    public Jobs(String title, String location, String career_level, String desc, String employer_id, String responsbility, String skill,String category) {
         this.title = title;
         this.location = location;
         this.career_level = career_level;
@@ -15,11 +15,22 @@ public class Jobs {
         this.employer_id = employer_id;
         this.responsbility = responsbility;
         this.skill = skill;
+        this.category = category;
     }
 
-    public Jobs(String title, String location) {
+
+    public Jobs(String id,String title, String location) {
+        this.id = id;
         this.title = title;
         this.location = location;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getTitle() {
@@ -76,5 +87,13 @@ public class Jobs {
 
     public void setSkill(String skill) {
         this.skill = skill;
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
     }
 }

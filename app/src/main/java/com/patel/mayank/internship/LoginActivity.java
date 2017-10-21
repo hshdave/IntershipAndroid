@@ -33,7 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     FirebaseDatabase fd;
     DatabaseReference db;
 
-    String uid;
+    String uid = "";
 
     Button btn_log,btn_out;
     @Override
@@ -115,12 +115,22 @@ public class LoginActivity extends AppCompatActivity {
                     db.child(uid).addValueEventListener(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                            String nm = dataSnapshot.child("name").getValue().toString();
-                            String uidtest = uid;
-                                Intent i = new Intent(LoginActivity.this,Testactivity.class);
-                                i.putExtra("nam",nm);
-                                i.putExtra("uid",uidtest);
-                                startActivity(i);
+                            String utype = dataSnapshot.child("utype").getValue().toString();
+
+                                if (utype.equals("Job Seeker"))
+                                {
+                                    Intent i = new Intent(LoginActivity.this,Jobseek.class);
+                                    startActivity(i);
+                                    finish();
+                                }else if(utype.equals("Employer"))
+                                {
+                                    Toast.makeText(LoginActivity.this,"Login As Employer!",Toast.LENGTH_LONG).show();
+                                    Intent i = new Intent(LoginActivity.this,EmployerActivity.class);
+                                    startActivity(i);
+                                    finish();
+                                }
+
+
                         }
 
                         @Override
@@ -128,11 +138,6 @@ public class LoginActivity extends AppCompatActivity {
 
                         }
                     });
-
-
-                    Intent i = new Intent(LoginActivity.this,Jobseekeractivity.class);
-                    startActivity(i);
-
                 }else
                 {
                     Toast.makeText(LoginActivity.this,"Login Failed!",Toast.LENGTH_LONG).show();
