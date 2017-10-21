@@ -32,7 +32,8 @@
             android:name=".JobPost"
             android:label="Job Poat"
             android:theme="@style/AppTheme" />
-        <activity android:name=".JobDetailActivity"></activity>
+        <activity android:name=".JobDetailActivity" />
+        <activity android:name=".Jobposted"></activity>
     </application>
 
 </manifest>

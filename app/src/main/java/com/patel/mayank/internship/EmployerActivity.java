@@ -46,8 +46,8 @@ public class EmployerActivity extends AppCompatActivity
 
         if (savedInstanceState == null) {
             Fragment fragment = null;
-            Class fragmentClass = null;
-            fragmentClass = JobPost.class;
+            Class fragmentClass;
+            fragmentClass = Jobposted.class;
             try {
                 fragment = (Fragment) fragmentClass.newInstance();
             } catch (Exception e) {
