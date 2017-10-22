@@ -7,6 +7,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,6 +19,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,12 +38,12 @@ public class Jobseek extends AppCompatActivity
     TextView txt_nm,txt_email;
     String uid = "";
 
-    ArrayList<Jobs> arrayList;
-    ListAdapter lstadpt;
-    ListView lstjob;
+    Fragment fragment;
 
     private FirebaseAuth raut;
     private FirebaseAuth.AuthStateListener mautListner;
+
+    FragmentManager fragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,7 +56,6 @@ public class Jobseek extends AppCompatActivity
 
 
         if (savedInstanceState == null) {
-            Fragment fragment = null;
             Class fragmentClass;
             fragmentClass = Jobseekeractivity.class;
             try {
@@ -63,8 +64,8 @@ public class Jobseek extends AppCompatActivity
                 e.printStackTrace();
             }
 
-            FragmentManager fragmentManager = getSupportFragmentManager();
-            fragmentManager.beginTransaction().replace(R.id.jobseekcon, fragment).commit();
+            fragmentManager = getSupportFragmentManager();
+            fragmentManager.beginTransaction().replace(R.id.jobseekcon, fragment).addToBackStack("fragBack").commit();
         }
 
 
@@ -94,9 +95,13 @@ public class Jobseek extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
+
         } else {
             super.onBackPressed();
         }
+
+        fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction().replace(R.id.jobseekcon, fragment).addToBackStack("fragBack").commit();
     }
 
     @Override
@@ -131,8 +136,16 @@ public class Jobseek extends AppCompatActivity
         if (id == R.id.nav_alljob) {
 
             Jobseekeractivity jobseekeractivity = new Jobseekeractivity();
-              getSupportFragmentManager().beginTransaction().replace(R.id.jobseekcon,jobseekeractivity).addToBackStack(null).commit();
-        } else if(id == R.id.nav_joblogout)
+                getSupportFragmentManager().beginTransaction().replace(R.id.jobseekcon,jobseekeractivity).addToBackStack("fragBack").commit();
+
+        }else if (id == R.id.nav_pro)
+        {
+            Editprofile editprofile = new Editprofile();
+            getSupportFragmentManager().beginTransaction().replace(R.id.jobseekcon,editprofile).addToBackStack("fragBack").commit();
+
+
+        }
+        else if(id == R.id.nav_joblogout)
         {
             raut.signOut();
 
@@ -174,8 +187,6 @@ public class Jobseek extends AppCompatActivity
 
     }
 
-
-
     @Override
     public void onStart() {
         super.onStart();
@@ -197,4 +208,8 @@ public class Jobseek extends AppCompatActivity
         return id;
     }
 
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+    }
 }

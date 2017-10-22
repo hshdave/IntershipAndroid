@@ -19,7 +19,6 @@
         <activity
             android:name=".Signupactivity"
             android:label="Signup" />
-        <activity android:name=".Jobseekeractivity" />
         <activity
             android:name=".Jobseek"
             android:label="@string/title_activity_jobseek"
@@ -28,12 +27,8 @@
             android:name=".EmployerActivity"
             android:label="@string/title_activity_employer"
             android:theme="@style/AppTheme" />
-        <activity
-            android:name=".JobPost"
-            android:label="Job Poat"
-            android:theme="@style/AppTheme" />
-        <activity android:name=".JobDetailActivity" />
-        <activity android:name=".Jobposted"></activity>
+        <activity android:name=".JobseekerProfile" />
+
     </application>
 
 </manifest>

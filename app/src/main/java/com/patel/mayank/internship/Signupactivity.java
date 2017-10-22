@@ -90,7 +90,7 @@ public class Signupactivity extends AppCompatActivity {
                         fd = FirebaseDatabase.getInstance();
                         db  = fd.getReference("User");
 
-                        Users users = new Users(email,name,bod,utype);
+                        Users users = new Users(email,name,bod,utype,"","");
 
                         db.child(uid).setValue(users);
 

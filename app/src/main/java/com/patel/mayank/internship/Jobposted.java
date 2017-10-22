@@ -79,7 +79,7 @@ public class Jobposted extends Fragment {
 
                     if(eid.equals(uid))
                     {
-                         tit = ds.child("title").getValue().toString();
+                        tit = ds.child("title").getValue().toString();
                         loc = ds.child("location").getValue().toString();
                         id = ds.getKey();
 
@@ -92,6 +92,24 @@ public class Jobposted extends Fragment {
                 lstadpt = new ListAdapter(arrayList,getActivity());
                 lstjoblist.setAdapter(lstadpt);
 
+                lstjoblist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        String key =arrayList.get(position).getId();
+
+                        ApplieduserList applieduserList = new ApplieduserList();
+                        Bundle argument = new Bundle();
+                        argument.putString("keyId",key);
+                        applieduserList.setArguments(argument);
+
+                        FragmentTransaction ft = getFragmentManager().beginTransaction();
+                        ft.add(R.id.flContent,applieduserList,"NewFragmentTag");
+                        ft.addToBackStack(null);
+                        ft.hide(Jobposted.this);
+                        ft.commit();
+
+                    }
+                });
 
 
             }

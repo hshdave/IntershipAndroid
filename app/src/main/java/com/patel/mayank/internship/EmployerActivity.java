@@ -35,6 +35,8 @@ public class EmployerActivity extends AppCompatActivity
 
     String uid = "";
 
+    Fragment fragment = null;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,7 +47,6 @@ public class EmployerActivity extends AppCompatActivity
         raut = FirebaseAuth.getInstance();
 
         if (savedInstanceState == null) {
-            Fragment fragment = null;
             Class fragmentClass;
             fragmentClass = Jobposted.class;
             try {
@@ -117,7 +118,8 @@ public class EmployerActivity extends AppCompatActivity
         if (id == R.id.nav_postjob) {
 
             JobPost jobpost = new JobPost();
-            getSupportFragmentManager().beginTransaction().replace(R.id.flContent,jobpost).addToBackStack(null).commit();
+           // getSupportFragmentManager().beginTransaction().replace(R.id.flContent,jobpost).addToBackStack(null).commit();
+            getSupportFragmentManager().beginTransaction().add(R.id.flContent,jobpost).addToBackStack(null).hide(fragment).commit();
 
         } else if (id == R.id.nav_emlogout) {
 

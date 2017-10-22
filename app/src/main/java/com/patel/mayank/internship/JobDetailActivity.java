@@ -51,6 +51,7 @@ public class JobDetailActivity extends Fragment {
 
         key = arguments.getString("keyId");
 
+        checkApplied();
         getMaxid();
         uid = getUid();
         setData();
@@ -145,12 +146,10 @@ public class JobDetailActivity extends Fragment {
         FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
         String id = user.getUid();
 
-        System.out.println("From GetUid Method  "+id);
-
         return id;
     }
 
-    public void  getMaxid()
+    public void getMaxid()
     {
         ids = new ArrayList<Integer>();
 
@@ -160,8 +159,6 @@ public class JobDetailActivity extends Fragment {
 
                 for (DataSnapshot ds:dataSnapshot.getChildren())
                 {
-                    System.out.println("Check ids  "+ds.getKey());
-
                     ids.add(Integer.parseInt(ds.getKey()));
                 }
 
@@ -173,5 +170,33 @@ public class JobDetailActivity extends Fragment {
 
             }
         });
+    }
+
+    public void checkApplied()
+    {
+        FirebaseDatabase fd = FirebaseDatabase.getInstance();
+        DatabaseReference db =fd.getReference("Jobseekers");
+
+        db.child(key).addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                for (DataSnapshot ds : dataSnapshot.getChildren())
+                {
+                    if(ds.getValue().equals(uid))
+                    {
+                        apply_btn.setText("Already Applied!");
+                        apply_btn.setEnabled(false);
+
+                    }
+                }
+
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+
+            }
+        });
+
     }
 }

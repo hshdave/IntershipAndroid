@@ -1,5 +1,8 @@
 package com.patel.mayank.internship;
 
+import java.util.HashMap;
+import java.util.Map;
+
 /**
  * Created by Mayank on 10/17/2017.
  */
@@ -91,9 +94,5 @@ public class Jobs {
 
     public String getCategory() {
         return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
     }
 }
